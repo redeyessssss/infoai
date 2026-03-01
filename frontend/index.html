@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine AI - Identify Any Medicine</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💊 Medicine AI</h1>
+            <p>Upload or capture an image of any medicine to get detailed information</p>
+        </header>
+
+        <div class="content">
+            <div class="upload-section">
+                <input type="file" id="imageInput" accept="image/*" capture="environment" hidden>
+                <button id="uploadBtn" class="btn btn-primary">📤 Upload Image</button>
+                <button id="captureBtn" class="btn btn-secondary">📷 Capture Photo</button>
+            </div>
+
+            <div id="preview" class="preview hidden">
+                <img id="previewImage" alt="Medicine preview">
+                <button id="analyzeBtn" class="btn btn-success">🔍 Analyze Medicine</button>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Analyzing medicine...</p>
+            </div>
+
+            <div id="results" class="results hidden">
+                <div class="medicine-header">
+                    <div class="medicine-name" id="medicineName"></div>
+                    <div class="medicine-subtitle" id="medicineSubtitle"></div>
+                </div>
+                <div class="info-grid" id="resultsContent"></div>
+                <div class="disclaimer">
+                    <strong>⚠️ Medical Disclaimer</strong>
+                    This information is for educational purposes only. Always consult a healthcare professional before taking any medication. Do not use this tool as a substitute for professional medical advice.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
