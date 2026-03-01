@@ -8,8 +8,13 @@ document.getElementById('uploadBtn').addEventListener('click', () => {
 });
 
 document.getElementById('captureBtn').addEventListener('click', () => {
-    document.getElementById('imageInput').setAttribute('capture', 'environment');
-    document.getElementById('imageInput').click();
+    // Check if device has camera
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        document.getElementById('imageInput').setAttribute('capture', 'environment');
+        document.getElementById('imageInput').click();
+    } else {
+        alert('Camera not available on this device. Please use the upload option.');
+    }
 });
 
 document.getElementById('imageInput').addEventListener('change', (e) => {
