@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5001';
+const API_URL = window.location.origin;
 
 let selectedImage = null;
 
@@ -49,7 +49,8 @@ document.getElementById('analyzeBtn').addEventListener('click', async () => {
             alert('Error: ' + data.error);
         }
     } catch (error) {
-        alert('Failed to connect to server. Make sure the backend is running.');
+        alert('Failed to analyze image. Please try again.');
+        console.error(error);
     } finally {
         document.getElementById('loading').classList.add('hidden');
     }

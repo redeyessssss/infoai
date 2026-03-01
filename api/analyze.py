@@ -1,20 +1,25 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+import sys
+
+# Add backend to path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'backend'))
+
 from utils.image_processor import process_image
 from utils.medicine_info import get_medicine_details
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-@app.route('/api/analyze', methods=['POST', 'OPTIONS'])
-def analyze_medicine():
+def handler(request):
+    """Vercel serverless function handler"""
     if request.method == 'OPTIONS':
         return jsonify({}), 200
         
+    if request.method != 'POST':
+        return jsonify({'error': 'Method not allowed'}), 405
+    
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'}), 400
     
@@ -33,13 +38,6 @@ def analyze_medicine():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/api/health', methods=['GET'])
-def health():
-    return jsonify({'status': 'healthy'})
-
-@app.route('/')
-def index():
-    return app.send_static_file('index.html')
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+# For Vercel
+if __name__ != '__main__':
+    app = handler

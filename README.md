@@ -2,6 +2,8 @@
 
 AI-powered medicine identification system that recognizes medicines from images and provides detailed information.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/redeyessssss/infoai)
+
 ## Features
 
 - 📸 Upload or capture medicine images
@@ -9,8 +11,23 @@ AI-powered medicine identification system that recognizes medicines from images 
 - 📋 Detailed medicine information (uses, dosage, side effects, etc.)
 - 🌍 Works with medicines from anywhere in the world
 - 💊 Professional UI with organized information cards
+- ☁️ Deploy to Vercel with one click
 
-## Setup
+## Live Demo
+
+[View Demo](https://infoai.vercel.app) (after deployment)
+
+## Quick Deploy to Vercel
+
+1. Click the "Deploy with Vercel" button above
+2. Connect your GitHub account
+3. Add environment variable:
+   - `GEMINI_API_KEY`: Your Google Gemini API key ([Get free key](https://aistudio.google.com/app/apikey))
+4. Click Deploy
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+## Local Development
 
 ### Backend Setup
 
@@ -66,7 +83,14 @@ python3 -m http.server 8000
 ## API Endpoints
 
 - `POST /api/analyze` - Analyze medicine image
-- `GET /health` - Check server status
+- `GET /api/health` - Check server status
+
+## Tech Stack
+
+- **Frontend**: HTML, CSS, JavaScript
+- **Backend**: Python, Flask
+- **AI**: Google Gemini 2.5 Flash
+- **Deployment**: Vercel (Serverless)
 
 ## Requirements
 
@@ -74,6 +98,45 @@ python3 -m http.server 8000
 - Google Gemini API key (FREE)
 - Modern web browser with camera access
 
-## Note
+## Project Structure
 
-This is for informational purposes only. Always consult healthcare professionals for medical advice.
+```
+infoai/
+├── backend/
+│   ├── app.py              # Flask application
+│   ├── requirements.txt    # Python dependencies
+│   └── utils/
+│       ├── image_processor.py  # Image handling
+│       └── medicine_info.py    # Medicine data lookup
+├── frontend/
+│   ├── index.html          # Main UI
+│   ├── style.css           # Styling
+│   └── app.js              # Frontend logic
+├── vercel.json             # Vercel configuration
+├── DEPLOYMENT.md           # Deployment guide
+└── README.md               # This file
+```
+
+## Environment Variables
+
+- `GEMINI_API_KEY`: Google Gemini API key (required)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the MIT License.
+
+## Disclaimer
+
+⚠️ This information is for educational purposes only. Always consult healthcare professionals for medical advice. Do not use this tool as a substitute for professional medical advice.
+
+## Support
+
+For issues and questions, please open an issue on GitHub.
